@@ -1,0 +1,43 @@
+<div class="container offset-md-1">
+ <div class="col-md-3">
+
+
+ <%= form_for (@user) do |f| %>
+  <% if @user.errors.any? %>
+   <div id="error_explanation">
+    <h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+      <% end %>
+    </ul>
+   </div>
+  <% end %>
+  <h2>User info</h2>
+  <div class="row">
+   <div class="col-md-12">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-md-12">
+    <%= f.label :Image %><br />
+    <%= f.attachment_field :profile_image %>
+   </div>
+  </div>
+  <br>
+  <div class="row">
+   <div class="col-md-12">
+   	<div class="col-md-4">
+    <%= f.label :Introduction %>
+    </div>
+    <div class="col-md-8">
+    <%= f.text_area :introduction, class:"form-control"%>
+    </div>
+   </div>
+  </div>
+  <%= f.submit "Update User", class:"btn btn-default" %>
+<% end %>
+</div>
+</div>

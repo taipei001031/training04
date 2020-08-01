@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid col-md-10 col-md-offset-1">
+    <div class="navbar-header">
+      <p style="color:white;">Bookers</p>
+    </div>
+    <% if user_signed_in? %>
+     <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "/users/#{current_user.id}" do %><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home<% end %>
+      </li>
+      <li><%= link_to "/users" do %><span class="glyphicon glyphicon-user"></span> Users<% end %>
+      </li>
+      <li><%= link_to "/books" do %><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books<% end %>
+      </li>
+      <li><%= link_to destroy_user_session_path ,method: :delete do %><span class="glyphicon glyphicon-log-in"></span> logout<% end %>
+      </li>
+     </ul>
+    <% else %>
+     <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "/" do %><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home<% end %>
+      </li>
+      <li><%= link_to "/home/about" do%><span class="glyphicon glyphicon-link" aria-hidden="true"></span> About<% end %>
+      </li>
+      <li><%= link_to new_user_registration_path do %><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> sign up<% end %>
+      </li>
+      <li><%= link_to new_user_session_path do %><span class="glyphicon glyphicon-log-in"></span> login<% end %>
+      </li>
+     </ul>
+    <% end %>
+  </div>
+ </nav>
+
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+
+    <%= yield %>
+
+  <footer class="footer">
+   <div class="container">
+    <div class="row">
+     <div class="col-4 text-right">
+        CopyRight Infratop.inc
+     </div>
+    </div>
+   </div>
+  </footer>
+  
+ </body>
+</html>
